@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,12 +16,14 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +38,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -46,6 +51,7 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainGridListView(
+                        viewModel = viewModel,
                         listOfStrings = listOfEndpoints,
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -56,14 +62,29 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainGridListView(listOfStrings: List<String>, modifier: Modifier = Modifier) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2)
-    ) {
-        items(listOfStrings) {
-            EndPointElevatedCard(text = it, Modifier.padding(8.dp))
-        }
+fun MainGridListView(
+    listOfStrings: List<String>,
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel
+) {
+    val titans by viewModel.titanList.observeAsState(null)
+
+    LaunchedEffect(Unit) {
+        viewModel.getTitanBaseInfo()
     }
+
+    if (titans == null) {
+        Text("Error")
+    } else {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2)
+        ) {
+            items(titans!!) {
+                EndPointElevatedCard(text = it.name, modifier.padding(8.dp))
+            }
+
+        }
+     }
 }
 
 @Composable
@@ -98,6 +119,5 @@ fun EndPointElevatedCard(text: String, modifier: Modifier) {
 @Composable
 fun GreetingPreview() {
     AttackOnTitanTheme {
-        MainGridListView(listOf("Characters", "episodes", "locations", "organizations", "titans"))
     }
 }
