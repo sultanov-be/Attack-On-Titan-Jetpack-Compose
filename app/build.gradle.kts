@@ -66,7 +66,7 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.runtime.livedata)
 }
 
 kapt {
