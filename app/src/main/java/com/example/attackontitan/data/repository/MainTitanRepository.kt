@@ -2,12 +2,22 @@ package com.example.attackontitan.data.repository
 
 import com.example.attackontitan.data.model.TitanBaseInfo
 import com.example.attackontitan.data.service.ApiService
+import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
 class MainTitanRepository @Inject constructor(
     private val api : ApiService
 ) {
-  suspend fun getBaseTitanInfo(): List<TitanBaseInfo> {
-      return api.getTitanNames()
+  suspend fun getBaseTitanInfo(): Resource<List<TitanBaseInfo>> {
+      return try {
+          val response = api.getTitanNames()
+          if (response.results != null) {
+              Resource.Success(response.results)
+          } else {
+              Resource.Error(Exception("No titans found"))
+          }
+      } catch (e: Exception) {
+          Resource.Error(e)
+      }
   }
 }
