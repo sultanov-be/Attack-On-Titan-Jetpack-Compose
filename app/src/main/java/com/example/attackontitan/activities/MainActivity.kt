@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,17 +21,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.example.attackontitan.R
+import com.example.attackontitan.data.model.TitanBaseInfo
 import com.example.attackontitan.ui.theme.AttackOnTitanTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -74,25 +76,27 @@ fun MainGridListView(
             modifier = modifier
         ) {
             items(titans) { titan ->
-                EndPointElevatedCard(text = titan.name, modifier = Modifier.padding(8.dp))
+                EndPointElevatedCard(titan = titan, modifier = Modifier.padding(8.dp))
             }
         }
     }
 }
 
 @Composable
-fun EndPointElevatedCard(text: String, modifier: Modifier) {
+fun EndPointElevatedCard(titan: TitanBaseInfo, modifier: Modifier) {
     ElevatedCard(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
 
         Box(Modifier.padding(6.dp)) {
-
             Card {
-                Image(
-                    painter = painterResource(R.drawable.img),
-                    contentDescription = null
+                AsyncImage(
+                    model = titan.img,
+                    contentDescription = titan.name,
+                    placeholder = painterResource(R.drawable.img),
+                    error = painterResource(R.drawable.img),
+                    contentScale = ContentScale.FillWidth
                 )
             }
 
@@ -101,7 +105,7 @@ fun EndPointElevatedCard(text: String, modifier: Modifier) {
                     .align(Alignment.BottomCenter)
                     .background(color = Color.White.copy(0.5f))
                     .fillMaxWidth(),
-                text = text.uppercase(),
+                text = titan.name.uppercase(),
                 textAlign = TextAlign.Center
             )
         }

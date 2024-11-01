@@ -67,6 +67,8 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.runtime.livedata)
+
+    implementation(libs.coil.compose)
 }
 
 kapt {
