@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.TitanBaseInfo
 import com.example.attackontitan.data.repository.MainTitanRepository
+import com.example.attackontitan.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,16 +16,20 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: MainTitanRepository
 ) :ViewModel() {
+
     private val _titanList = MutableLiveData<List<TitanBaseInfo>>()
     val titanList : LiveData<List<TitanBaseInfo>> = _titanList
 
-    fun getTitanBaseInfo() {
+    init {
+        getTitanBaseInfo()
+    }
+
+    private fun getTitanBaseInfo() {
         viewModelScope.launch {
-            try {
-                val titans = repository.getBaseTitanInfo()
-                _titanList.value = titans
-            } catch (e: Exception) {
-                //TODO("Need to add resource class later")
+            when (val result = repository.getBaseTitanInfo()) {
+                is Resource.Success -> _titanList.value = result.data
+                is Resource.Error -> Log.e("MainViewModel",
+                    "Error fetching titans: ${result.exception.message}")
             }
         }
     }

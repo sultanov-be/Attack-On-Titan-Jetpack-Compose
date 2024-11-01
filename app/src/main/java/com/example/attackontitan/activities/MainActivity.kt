@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -44,15 +45,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val listOfEndpoints =
-            listOf("Characters", "episodes", "locations", "organizations", "titans")
-
         setContent {
             MaterialTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainGridListView(
                         viewModel = viewModel,
-                        listOfStrings = listOfEndpoints,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -63,28 +60,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainGridListView(
-    listOfStrings: List<String>,
     modifier: Modifier = Modifier,
     viewModel: MainViewModel
 ) {
-    val titans by viewModel.titanList.observeAsState(null)
+    val titans by viewModel.titanList.observeAsState(emptyList())
 
-    LaunchedEffect(Unit) {
-        viewModel.getTitanBaseInfo()
-    }
-
-    if (titans == null) {
-        Text("Error")
+    if (titans.isEmpty()) {
+        CircularProgressIndicator()
+        Text("Загрузка титанов...")
     } else {
         LazyVerticalGrid(
-            columns = GridCells.Fixed(2)
+            columns = GridCells.Fixed(2),
+            modifier = modifier
         ) {
-            items(titans!!) {
-                EndPointElevatedCard(text = it.name, modifier.padding(8.dp))
+            items(titans) { titan ->
+                EndPointElevatedCard(text = titan.name, modifier = Modifier.padding(8.dp))
             }
-
         }
-     }
+    }
 }
 
 @Composable
