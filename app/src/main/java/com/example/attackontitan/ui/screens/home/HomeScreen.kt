@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens
+package com.example.attackontitan.ui.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -8,14 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.attackontitan.ui.navigation.Screen
+import com.example.attackontitan.ui.navigation.Route
 
 @Composable
 fun HomeScreen(navController: NavController) {
     Column {
         Button(
             onClick = {
-                navController.navigate(Screen.TitanScreen.withArgs("titans"))
+                navController.navigate(Route.TitansListScreen.withArgs("titans"))
             },
             modifier = Modifier.padding(8.dp)
         ) {
@@ -24,7 +24,7 @@ fun HomeScreen(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate(Screen.OrganizationScreen.route)
+                navController.navigate(Route.OrganizationsListScreen.route)
             },
             modifier = Modifier.padding(8.dp)
         ) {
@@ -33,7 +33,7 @@ fun HomeScreen(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate(Screen.LocationScreen.route)
+                navController.navigate(Route.LocationsListScreen.route)
             },
             modifier = Modifier.padding(8.dp)
         ) {
@@ -42,7 +42,7 @@ fun HomeScreen(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate(Screen.CharacterScreen.route)
+                navController.navigate(Route.CharactersListScreen.route)
             },
             modifier = Modifier.padding(8.dp)
         ) {

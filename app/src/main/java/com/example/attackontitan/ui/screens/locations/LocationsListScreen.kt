@@ -1,9 +1,9 @@
-package com.example.attackontitan.ui.screens
+package com.example.attackontitan.ui.screens.locations
 
 import androidx.compose.runtime.Composable
 import com.example.attackontitan.ui.views.SampleScreen
 
 @Composable
-fun LocationScreen() {
+fun LocationsListScreen() {
     SampleScreen("Location Screen")
 }
