@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.TitanBaseInfo
-import com.example.attackontitan.data.repository.MainTitanRepository
+import com.example.attackontitan.data.repository.TitansListRepository
 import com.example.attackontitan.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TitanListViewModel @Inject constructor(
-    private val repository: MainTitanRepository
+    private val repository: TitansListRepository
 ) : ViewModel() {
 
     private val _titanList = MutableLiveData<List<TitanBaseInfo>>()
@@ -26,7 +26,7 @@ class TitanListViewModel @Inject constructor(
 
     private fun getTitanBaseInfo() {
         viewModelScope.launch {
-            when (val result = repository.getBaseTitanInfo()) {
+            when (val result = repository.getTitansList()) {
                 is Resource.Success -> _titanList.value = result.data
                 is Resource.Error -> Log.e(
                     "MainViewModel",
