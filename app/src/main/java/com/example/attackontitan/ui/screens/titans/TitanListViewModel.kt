@@ -1,4 +1,4 @@
-package com.example.attackontitan.activities
+package com.example.attackontitan.ui.screens.titans
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class TitanListViewModel @Inject constructor(
     private val repository: MainTitanRepository
-) :ViewModel() {
+) : ViewModel() {
 
     private val _titanList = MutableLiveData<List<TitanBaseInfo>>()
     val titanList : LiveData<List<TitanBaseInfo>> = _titanList
@@ -28,8 +28,10 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = repository.getBaseTitanInfo()) {
                 is Resource.Success -> _titanList.value = result.data
-                is Resource.Error -> Log.e("MainViewModel",
-                    "Error fetching titans: ${result.exception.message}")
+                is Resource.Error -> Log.e(
+                    "MainViewModel",
+                    "Error fetching titans: ${result.exception.message}"
+                )
             }
         }
     }
