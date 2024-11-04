@@ -9,8 +9,7 @@ import com.example.attackontitan.utils.Resource
 @Composable
 fun <T> GenericListScreen(
     viewModel: BaseListViewModel<T>,
-    itemContent: @Composable (T) -> Unit,
-    loadingText: String = "Загрузка..."
+    itemContent: @Composable (T) -> Unit
 ) {
     val resource = viewModel.list.observeAsState(Resource.Loading)
 

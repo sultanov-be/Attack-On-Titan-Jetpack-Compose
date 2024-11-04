@@ -3,7 +3,6 @@ package com.example.attackontitan.ui.screens.organizations
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.OrganizationBaseInfo
 import com.example.attackontitan.data.repository.OrganizationsListRepository

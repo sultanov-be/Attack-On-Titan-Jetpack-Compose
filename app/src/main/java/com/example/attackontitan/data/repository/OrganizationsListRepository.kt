@@ -1,9 +1,7 @@
 package com.example.attackontitan.data.repository
 
 import com.example.attackontitan.data.model.OrganizationBaseInfo
-import com.example.attackontitan.data.model.TitanBaseInfo
 import com.example.attackontitan.data.service.OrganizationsListApiService
-import com.example.attackontitan.data.service.TitansListApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
