@@ -11,11 +11,7 @@ class TitansListRepository @Inject constructor(
     suspend fun getTitansList(): Resource<List<TitanBaseInfo>> {
         return try {
             val response = api.getTitansList()
-            if (response.results != null) {
-                Resource.Success(response.results)
-            } else {
-                Resource.Error(Exception("No titans found"))
-            }
+            Resource.Success(response.results)
         } catch (e: Exception) {
             Resource.Error(e)
         }
