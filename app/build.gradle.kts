@@ -61,6 +61,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
@@ -69,6 +70,8 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
 
     implementation(libs.coil.compose)
+
+    implementation(libs.androidx.navigation.compose)
 }
 
 kapt {
