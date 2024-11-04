@@ -1,5 +1,6 @@
 package com.example.attackontitan.di
 
+import com.example.attackontitan.data.service.OrganizationsListApiService
 import com.example.attackontitan.data.service.TitansListApiService
 import dagger.Module
 import dagger.Provides
@@ -17,10 +18,19 @@ private const val BASE_URL = "https://api.attackontitanapi.com/"
 object AppModule {
     @Singleton
     @Provides
-    fun provideApi(): TitansListApiService = Retrofit.Builder()
+    fun provideTitansApi(): TitansListApiService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClient.Builder().build())
         .build()
         .create(TitansListApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideOrganizationsApi(): OrganizationsListApiService = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(OkHttpClient.Builder().build())
+        .build()
+        .create(OrganizationsListApiService::class.java)
 }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TitanListViewModel @Inject constructor(
+class TitansListViewModel @Inject constructor(
     private val repository: TitansListRepository
 ) : ViewModel() {
 
@@ -29,7 +29,7 @@ class TitanListViewModel @Inject constructor(
             when (val result = repository.getTitansList()) {
                 is Resource.Success -> _titanList.value = result.data
                 is Resource.Error -> Log.e(
-                    "MainViewModel",
+                    "TitansListViewModel",
                     "Error fetching titans: ${result.exception.message}"
                 )
             }

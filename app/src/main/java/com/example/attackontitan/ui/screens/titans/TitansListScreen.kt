@@ -27,14 +27,14 @@ import com.example.attackontitan.R
 import com.example.attackontitan.data.model.TitanBaseInfo
 
 @Composable
-fun TitanListScreen(titanViewModel: TitanListViewModel) {
+fun TitanListScreen(titanViewModel: TitansListViewModel) {
     TitanGridListView(viewModel = titanViewModel)
 }
 
 @Composable
 fun TitanGridListView(
     modifier: Modifier = Modifier,
-    viewModel: TitanListViewModel
+    viewModel: TitansListViewModel
 ) {
     val titans by viewModel.titanList.observeAsState(emptyList())
 
