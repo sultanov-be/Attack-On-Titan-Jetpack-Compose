@@ -1,6 +1,6 @@
 package com.example.attackontitan.data.model
 
-data class TitanResponse(
+data class ApiResponse<T>(
     val info: Info,
-    val results: List<TitanBaseInfo>
+    val results: List<T>
 )

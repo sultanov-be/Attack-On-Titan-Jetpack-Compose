@@ -15,7 +15,7 @@ fun HomeScreen(navController: NavController) {
     Column {
         Button(
             onClick = {
-                navController.navigate(Route.TitansListScreen.withArgs("titans"))
+                navController.navigate(Route.TitansListScreen.route)
             },
             modifier = Modifier.padding(8.dp)
         ) {
