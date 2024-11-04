@@ -17,21 +17,23 @@ class OrganizationsListViewModel @Inject constructor(
     private val repository: OrganizationsListRepository
 ) : ViewModel() {
 
-    private val _organizationsList = MutableLiveData<List<OrganizationBaseInfo>>()
-    val organizationsList : LiveData<List<OrganizationBaseInfo>> = _organizationsList
+    private val _organizationsList = MutableLiveData<Resource<List<OrganizationBaseInfo>>>()
+    val organizationsList: LiveData<Resource<List<OrganizationBaseInfo>>> = _organizationsList
 
     init {
-        getTitanBaseInfo()
+        getOrganizationsBaseInfo()
     }
 
-    private fun getTitanBaseInfo() {
+    private fun getOrganizationsBaseInfo() {
+        _organizationsList.value = Resource.Loading
         viewModelScope.launch {
             when (val result = repository.getOrganizationsList()) {
-                is Resource.Success -> _organizationsList.value = result.data
+                is Resource.Success -> _organizationsList.value = result
                 is Resource.Error -> Log.e(
                     "OrganizationsListViewModel",
                     "Error fetching titans: ${result.exception.message}"
                 )
+                else -> {}
             }
         }
     }

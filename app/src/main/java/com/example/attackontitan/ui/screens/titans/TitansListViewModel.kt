@@ -17,8 +17,8 @@ class TitansListViewModel @Inject constructor(
     private val repository: TitansListRepository
 ) : ViewModel() {
 
-    private val _titanList = MutableLiveData<List<TitanBaseInfo>>()
-    val titanList : LiveData<List<TitanBaseInfo>> = _titanList
+    private val _titanList = MutableLiveData<Resource<List<TitanBaseInfo>>>()
+    val titanList: LiveData<Resource<List<TitanBaseInfo>>> = _titanList
 
     init {
         getTitanBaseInfo()
@@ -27,11 +27,12 @@ class TitansListViewModel @Inject constructor(
     private fun getTitanBaseInfo() {
         viewModelScope.launch {
             when (val result = repository.getTitansList()) {
-                is Resource.Success -> _titanList.value = result.data
+                is Resource.Success -> _titanList.value = result
                 is Resource.Error -> Log.e(
                     "TitansListViewModel",
                     "Error fetching titans: ${result.exception.message}"
                 )
+                else -> {}
             }
         }
     }
