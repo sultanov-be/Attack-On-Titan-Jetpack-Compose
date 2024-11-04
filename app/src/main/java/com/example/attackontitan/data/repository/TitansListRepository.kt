@@ -5,15 +5,14 @@ import com.example.attackontitan.data.service.TitansListApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
-class TitansListRepository @Inject constructor(
-    private val api : TitansListApiService
-) {
-    suspend fun getTitansList(): Resource<List<TitanBaseInfo>> {
-        return try {
-            val response = api.getTitansList()
-            Resource.Success(response.results)
-        } catch (e: Exception) {
-            Resource.Error(e)
-        }
+interface TitansListRepository {
+    suspend fun getTitansList() : Resource<List<TitanBaseInfo>>
+}
+
+class TitansListRepositoryImpl @Inject constructor(
+    private val api: TitansListApiService
+) : TitansListRepository {
+    override suspend fun getTitansList(): Resource<List<TitanBaseInfo>> {
+        return DefaultListRepository { api.getTitansList() }.getList()
     }
 }

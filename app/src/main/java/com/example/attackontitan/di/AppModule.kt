@@ -1,5 +1,9 @@
 package com.example.attackontitan.di
 
+import com.example.attackontitan.data.repository.OrganizationsListRepository
+import com.example.attackontitan.data.repository.OrganizationsListRepositoryImpl
+import com.example.attackontitan.data.repository.TitansListRepository
+import com.example.attackontitan.data.repository.TitansListRepositoryImpl
 import com.example.attackontitan.data.service.OrganizationsListApiService
 import com.example.attackontitan.data.service.TitansListApiService
 import dagger.Module
@@ -11,26 +15,39 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://api.attackontitanapi.com/"
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    @Singleton
-    @Provides
-    fun provideTitansApi(): TitansListApiService = Retrofit.Builder()
+
+    private const val BASE_URL = "https://api.attackontitanapi.com/"
+
+    private val client = OkHttpClient.Builder().build()
+    private val converter = GsonConverterFactory.create()
+
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .addConverterFactory(converter)
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(OkHttpClient.Builder().build())
+        .client(client)
         .build()
-        .create(TitansListApiService::class.java)
 
     @Singleton
     @Provides
-    fun provideOrganizationsApi(): OrganizationsListApiService = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(OkHttpClient.Builder().build())
-        .build()
-        .create(OrganizationsListApiService::class.java)
+    fun provideTitansApi(): TitansListApiService =
+        retrofit.create(TitansListApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideOrganizationsApi(): OrganizationsListApiService =
+        retrofit.create(OrganizationsListApiService::class.java)
+
+
+    @Singleton
+    @Provides
+    fun provideTitansListRepository(api: TitansListApiService): TitansListRepository =
+        TitansListRepositoryImpl(api)
+
+    @Singleton
+    @Provides
+    fun provideOrganizationsListRepository(api: OrganizationsListApiService): OrganizationsListRepository =
+        OrganizationsListRepositoryImpl(api)
 }
