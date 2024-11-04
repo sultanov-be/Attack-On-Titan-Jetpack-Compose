@@ -8,10 +8,10 @@ import com.example.attackontitan.ui.views.ListItem
 fun OrganizationsListScreen(organizationsListViewModel: OrganizationsListViewModel) {
     GenericListScreen(
         viewModel = organizationsListViewModel,
-        itemContent = { titan ->
+        itemContent = { organization ->
             ListItem(
-                imageUrl = titan.img,
-                title = titan.name
+                imageUrl = organization.img,
+                title = organization.name
             )
         }
     )
