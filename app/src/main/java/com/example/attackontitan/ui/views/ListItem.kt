@@ -21,7 +21,7 @@ import com.example.attackontitan.R
 
 @Composable
 fun ListItem(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.padding(8.dp),
     imageUrl: String,
     title: String
 ) {
