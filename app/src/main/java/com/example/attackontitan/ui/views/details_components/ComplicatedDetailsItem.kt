@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,9 +24,9 @@ import androidx.compose.ui.unit.sp
 import com.example.attackontitan.R
 
 @Composable
-fun ComplicatedDetailsItem(initialState: Boolean) {
+fun ComplicatedDetailsItem(list: List<String>) {
     var isShown by remember {
-        mutableStateOf(initialState)
+        mutableStateOf(false)
     }
 
     Column(
@@ -52,10 +54,10 @@ fun ComplicatedDetailsItem(initialState: Boolean) {
             )
         }
         if (isShown) {
-            Column {
-                Text(text = "Eron")
-                Text(text = "Beka")
-                Text(text = "Sule")
+            LazyColumn {
+                items(list) { items ->
+                    Text(text = items)
+                }
             }
         }
     }
