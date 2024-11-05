@@ -2,10 +2,13 @@ package com.example.attackontitan.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.attackontitan.ui.screens.characters.CharactersListScreen
+import com.example.attackontitan.ui.screens.details.DetailsScreen
 import com.example.attackontitan.ui.screens.home.HomeScreen
 import com.example.attackontitan.ui.screens.locations.LocationsListScreen
 import com.example.attackontitan.ui.screens.organizations.OrganizationsListScreen
@@ -27,14 +30,36 @@ fun Navigation() {
             route = Route.TitansListScreen.route,
         ) {
             val titanViewModel = hiltViewModel<TitansListViewModel>()
-            TitanListScreen(titanViewModel)
+            TitanListScreen(
+                navController = navController,
+                titanViewModel = titanViewModel
+            )
         }
+
+        composable(
+            route = Route.OrganizationsListScreen.route
+        ) {
+            val organizationsListViewModel = hiltViewModel<OrganizationsListViewModel>()
+            OrganizationsListScreen(
+                navController = navController,
+                organizationsListViewModel = organizationsListViewModel
+            )
+        }
+
+        composable(
+            route = Route.DetailsScreen.route + "/{itemId}",
+            arguments = listOf(navArgument("itemId") {
+                type = NavType.StringType
+            })
+        ) { navBackStackEntry ->
+            val itemId = navBackStackEntry.arguments?.getString("itemId")
+            itemId?.let {
+                DetailsScreen(itemId = it)
+            }
+        }
+
         composable(route = Route.LocationsListScreen.route) {
             LocationsListScreen()
-        }
-        composable(route = Route.OrganizationsListScreen.route) {
-            val organizationsListViewModel = hiltViewModel<OrganizationsListViewModel>()
-            OrganizationsListScreen(organizationsListViewModel)
         }
         composable(route = Route.CharactersListScreen.route) {
             CharactersListScreen()
