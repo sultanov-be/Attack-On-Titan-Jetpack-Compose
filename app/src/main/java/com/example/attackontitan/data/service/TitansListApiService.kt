@@ -1,6 +1,7 @@
 package com.example.attackontitan.data.service
 
 import com.example.attackontitan.data.model.ApiResponse
+import com.example.attackontitan.data.model.CharacterBaseInfo
 import com.example.attackontitan.data.model.TitanBaseInfo
 import com.example.attackontitan.data.model.TitanDetails
 import retrofit2.Response
@@ -13,4 +14,7 @@ interface TitansListApiService {
 
     @GET("titans/{id}")
     suspend fun getTitanDetails(@Path("id") id: Int) : Response<TitanDetails>
+
+    @GET("characters/{id}")
+    suspend fun getCharacterName(@Path("id") id: Int) : Response<CharacterBaseInfo>
 }
