@@ -18,7 +18,7 @@ fun <T> GenericListScreen(
             GenericLoadingView()
         }
         is Resource.Success -> {
-            GenericGridListView(data = state.data, itemContent = itemContent)
+            GenericColumnListView(data = state.data, itemContent = itemContent)
         }
         is Resource.Error -> {
             Text("Ошибка загрузки: ${state.exception.message}")
