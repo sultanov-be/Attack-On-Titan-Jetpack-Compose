@@ -6,6 +6,7 @@ sealed class Route(val route: String) {
     data object CharactersListScreen: Route("characters_list_screen")
     data object OrganizationsListScreen: Route("organizations_list_screen")
     data object LocationsListScreen: Route("locations_list_screen")
+    data object DetailsScreen: Route("details_screen")
 
     fun withArgs(vararg args: String) : String =
         buildString {
