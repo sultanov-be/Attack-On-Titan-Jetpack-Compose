@@ -1,5 +1,6 @@
 package com.example.attackontitan.data.repository.characters
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.attackontitan.data.model.CharacterBaseInfo
@@ -22,11 +23,12 @@ class CharactersPagingSource(
             val response = apiService.getCharacters(page)
 
             LoadResult.Page(
-                data = response.results,
+                data = response.results, // results — это List<CharacterBaseInfo>
                 prevKey = if (page > 1) page - 1 else null,
                 nextKey = if (response.info.next_page != null) page + 1 else null
             )
         } catch (e: Exception) {
+            Log.e("CharactersPagingSource", "Error loading data", e)
             LoadResult.Error(e)
         }
     }

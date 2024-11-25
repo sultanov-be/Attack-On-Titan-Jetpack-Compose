@@ -19,7 +19,8 @@ class CharactersListRepositoryImpl @Inject constructor(
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
-                enablePlaceholders = false
+                enablePlaceholders = false,
+                prefetchDistance = 2
             ),
             pagingSourceFactory = { CharactersPagingSource(apiService) }
         ).flow
