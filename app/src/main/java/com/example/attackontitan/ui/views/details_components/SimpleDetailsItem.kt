@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.attackontitan.utils.firstToCapital
-import java.util.Locale
 
 @Composable
 fun SimpleDetailsItem(title: String, content: String) {
