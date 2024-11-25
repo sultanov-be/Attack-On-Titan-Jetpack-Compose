@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.attackontitan.ui.screens.characters.CharactersListScreen
+import com.example.attackontitan.ui.screens.characters.CharactersListViewModel
 import com.example.attackontitan.ui.screens.details.DetailsScreen
 import com.example.attackontitan.ui.screens.home.HomeScreen
 import com.example.attackontitan.ui.screens.locations.LocationsListScreen
@@ -62,7 +63,8 @@ fun Navigation() {
             LocationsListScreen()
         }
         composable(route = Route.CharactersListScreen.route) {
-            CharactersListScreen()
+            val charactersViewModel = hiltViewModel<CharactersListViewModel>()
+            CharactersListScreen(viewModel = charactersViewModel)
         }
     }
 }

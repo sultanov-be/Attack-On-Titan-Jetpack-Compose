@@ -1,6 +1,7 @@
 package com.example.attackontitan.ui.views
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +29,7 @@ import com.example.attackontitan.R
 
 @Composable
 fun ListItem(
-    imageUrl: String,
+    imageUrl: String?,
     title: String,
     onClick: () -> Unit
 ) {
@@ -46,16 +47,25 @@ fun ListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(shape = RoundedCornerShape(10.dp)) {
-                AsyncImage(
-                    model = imageUrl,
-                    contentDescription = title,
-                    placeholder = painterResource(R.drawable.img),
-                    error = painterResource(R.drawable.img),
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(150.dp)
-                        .padding(2.dp)
-                )
+                if (imageUrl == null)
+                    Image(
+                        modifier = Modifier
+                            .size(150.dp)
+                            .padding(2.dp),
+                        painter = painterResource(R.drawable.img),
+                        contentDescription = ""
+                    )
+                else
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = title,
+                        placeholder = painterResource(R.drawable.img),
+                        error = painterResource(R.drawable.img),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(150.dp)
+                            .padding(2.dp)
+                    )
             }
             Text(
                 modifier = Modifier
