@@ -13,17 +13,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.attackontitan.utils.firstToCapital
+import java.util.Locale
 
 @Composable
 fun SimpleDetailsItem(title: String, content: String) {
     Row(
-        modifier = Modifier.padding(top = 8.dp).fillMaxWidth(),
+        modifier = Modifier
+            .padding(top = 8.dp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             fontSize = 18.sp,
-            text = title,
+            text = title.firstToCapital(),
             textAlign = TextAlign.Start
         )
         Text(

@@ -22,9 +22,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.attackontitan.R
+import com.example.attackontitan.utils.firstToCapital
 
 @Composable
-fun ComplicatedDetailsItem(list: List<String>) {
+fun ComplicatedDetailsItem(title: String, list: List<String>) {
     var isShown by remember {
         mutableStateOf(false)
     }
@@ -38,7 +39,7 @@ fun ComplicatedDetailsItem(list: List<String>) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Abilities",
+                text = title.firstToCapital(),
                 fontSize = 18.sp
             )
 
