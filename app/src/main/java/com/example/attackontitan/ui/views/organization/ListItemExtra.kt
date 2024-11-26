@@ -1,13 +1,12 @@
-package com.example.attackontitan.ui.views
+package com.example.attackontitan.ui.views.organization
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,39 +25,29 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.attackontitan.R
+import com.example.attackontitan.data.model.organizations.OrganizationBaseInfo
+import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 
 @Composable
-fun ListItem(
-    imageUrl: String?,
-    title: String,
-    onClick: () -> Unit = {}
+fun ListItemExtra(
+    content: OrganizationBaseInfo
 ) {
+
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp)
-            .clickable { onClick() },
+        modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceContainer),
         shape = RectangleShape
     ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Card(shape = RoundedCornerShape(10.dp)) {
-                if (imageUrl == null)
-                    Image(
-                        modifier = Modifier
-                            .size(150.dp)
-                            .padding(2.dp),
-                        painter = painterResource(R.drawable.img),
-                        contentDescription = ""
-                    )
-                else
+        Column {
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(shape = RoundedCornerShape(10.dp)) {
                     AsyncImage(
-                        model = imageUrl,
-                        contentDescription = title,
+                        model = content.img,
+                        contentDescription = content.name,
                         placeholder = painterResource(R.drawable.img),
                         error = painterResource(R.drawable.img),
                         contentScale = ContentScale.Crop,
@@ -66,14 +55,17 @@ fun ListItem(
                             .size(150.dp)
                             .padding(2.dp)
                     )
+                }
+                Text(
+                    modifier = Modifier
+                        .background(color = Color.White.copy(0.5f))
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    text = content.name.uppercase(),
+                    textAlign = TextAlign.Center
+                )
+
             }
-            Text(
-                modifier = Modifier
-                    .background(color = Color.White.copy(0.5f))
-                    .fillMaxWidth(),
-                text = title.uppercase(),
-                textAlign = TextAlign.Center
-            )
         }
     }
 }

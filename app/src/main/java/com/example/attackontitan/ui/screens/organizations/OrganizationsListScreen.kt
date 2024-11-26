@@ -13,8 +13,7 @@ fun OrganizationsListScreen(
         itemContent = { organization ->
             ListItem(
                 imageUrl = organization.img,
-                title = organization.name,
-                onClick = {}
+                title = organization.name
             )
         }
     )
