@@ -1,59 +1,21 @@
-package com.example.attackontitan.ui.screens.details
+package com.example.attackontitan.ui.views.titan
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.model.titans.TitanDetails
-import com.example.attackontitan.ui.views.GenericLoadingView
 import com.example.attackontitan.ui.views.details_components.ComplicatedDetailsItem
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 import com.example.attackontitan.ui.views.details_components.TitleTitanInfo
 import com.example.attackontitan.utils.Resource
 
 @Composable
-fun DetailsScreen(itemId: String) {
-    val detailsViewModel: DetailsViewModel = hiltViewModel()
-
-    LaunchedEffect(itemId) {
-        detailsViewModel.getTitanDetails(itemId.toInt())
-    }
-
-    val titanDetails by detailsViewModel.titanDetails.observeAsState()
-    val characterDetails by detailsViewModel.characterDetails.observeAsState()
-    val formerInheritorNames by detailsViewModel.formerInheritorNames.observeAsState()
-
-    when (titanDetails) {
-        is Resource.Loading -> {
-            GenericLoadingView()
-        }
-        is Resource.Success -> {
-            val details = (titanDetails as Resource.Success).data
-
-            LaunchedEffect(titanDetails) {
-                detailsViewModel.getCharacterName(details.current_inheritor)
-                detailsViewModel.getFormerInheritorNames(details.former_inheritors)
-            }
-
-            DetailsScreenBody(details, characterDetails, formerInheritorNames)
-        }
-        else -> {
-            Text("Error loading details")
-        }
-    }
-}
-
-@Composable
-fun DetailsScreenBody(
+fun TitanDetailsScreenBody(
     details: TitanDetails,
     characterDetails: Resource<CharacterBaseInfo>?,
     formerInheritorNames: Resource<List<String>>?

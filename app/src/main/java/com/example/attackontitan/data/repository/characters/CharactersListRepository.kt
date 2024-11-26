@@ -4,25 +4,43 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.attackontitan.data.model.characters.CharacterBaseInfo
-import com.example.attackontitan.data.service.CharactersListApiService
+import com.example.attackontitan.data.model.characters.CharacterDetails
+import com.example.attackontitan.data.service.CharacterApiService
+import com.example.attackontitan.utils.Resource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface CharactersListRepository {
     fun getCharacters(): Flow<PagingData<CharacterBaseInfo>>
+    suspend fun getCharacterDetails(id: Int): Flow<Resource<CharacterDetails>>
 }
 
 class CharactersListRepositoryImpl @Inject constructor(
-    private val apiService: CharactersListApiService
+    private val apiService: CharacterApiService
 ) : CharactersListRepository {
     override fun getCharacters(): Flow<PagingData<CharacterBaseInfo>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
-                enablePlaceholders = false,
-                prefetchDistance = 2
+                enablePlaceholders = false
             ),
             pagingSourceFactory = { CharactersPagingSource(apiService) }
         ).flow
+    }
+
+    override suspend fun getCharacterDetails(id: Int): Flow<Resource<CharacterDetails>> = flow {
+        try {
+            val response = apiService.getCharacterById(id)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    emit(Resource.Success(it))
+                } ?: emit(Resource.Error(Exception("Empty response")))
+            } else {
+                emit(Resource.Error(Exception("Failed to load character details")))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e))
+        }
     }
 }

@@ -7,16 +7,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.attackontitan.ui.screens.characters.CharactersListScreen
-import com.example.attackontitan.ui.screens.characters.CharactersListViewModel
-import com.example.attackontitan.ui.screens.details.DetailsScreen
+import com.example.attackontitan.ui.screens.characters.details.CharacterDetailsScreen
+import com.example.attackontitan.ui.screens.characters.details.CharacterDetailsViewModel
+import com.example.attackontitan.ui.screens.characters.list.CharactersListScreen
+import com.example.attackontitan.ui.screens.characters.list.CharactersListViewModel
 import com.example.attackontitan.ui.screens.home.HomeScreen
 import com.example.attackontitan.ui.screens.locations.LocationsListScreen
 import com.example.attackontitan.ui.screens.locations.LocationsListViewModel
 import com.example.attackontitan.ui.screens.organizations.OrganizationsListScreen
 import com.example.attackontitan.ui.screens.organizations.OrganizationsListViewModel
-import com.example.attackontitan.ui.screens.titans.TitanListScreen
-import com.example.attackontitan.ui.screens.titans.TitansListViewModel
+import com.example.attackontitan.ui.screens.titans.details.TitanDetailsScreen
+import com.example.attackontitan.ui.screens.titans.list.TitanListScreen
+import com.example.attackontitan.ui.screens.titans.list.TitansListViewModel
 
 @Composable
 fun Navigation() {
@@ -28,45 +30,64 @@ fun Navigation() {
             HomeScreen(navController = navController)
         }
 
-        composable(
-            route = Route.TitansListScreen.route,
-        ) {
+        composable(route = Route.TitansListScreen.route) {
             val titanViewModel = hiltViewModel<TitansListViewModel>()
+
             TitanListScreen(
                 navController = navController,
-                titanViewModel = titanViewModel
+                viewModel = titanViewModel
             )
         }
 
-        composable(
-            route = Route.OrganizationsListScreen.route
-        ) {
-            val organizationsListViewModel = hiltViewModel<OrganizationsListViewModel>()
-            OrganizationsListScreen(
+        composable(route = Route.CharactersListScreen.route) {
+            val charactersViewModel = hiltViewModel<CharactersListViewModel>()
+
+            CharactersListScreen(
                 navController = navController,
-                organizationsListViewModel = organizationsListViewModel
+                viewModel = charactersViewModel
             )
         }
 
         composable(
-            route = Route.DetailsScreen.route + "/{itemId}",
-            arguments = listOf(navArgument("itemId") {
-                type = NavType.StringType
+            route = Route.TitanDetailsScreen.route + "/{titanId}",
+            arguments = listOf(navArgument("titanId") {
+                type = NavType.IntType
             })
         ) { navBackStackEntry ->
-            val itemId = navBackStackEntry.arguments?.getString("itemId")
+            val itemId = navBackStackEntry.arguments?.getInt("titanId")
+
             itemId?.let {
-                DetailsScreen(itemId = it)
+                TitanDetailsScreen(titanId = it)
+            }
+        }
+
+        composable(
+            route = Route.CharacterDetailsScreen.route + "/{characterId}",
+            arguments = listOf(navArgument("characterId") {
+                type = NavType.IntType
+            })
+        ) { navBackStackEntry ->
+            val characterId = navBackStackEntry.arguments?.getInt("characterId")
+            val characterViewModel = hiltViewModel<CharacterDetailsViewModel>()
+
+            characterId?.let {
+                CharacterDetailsScreen(
+                    viewModel = characterViewModel,
+                    characterId = it
+                )
             }
         }
 
         composable(route = Route.LocationsListScreen.route) {
             val locationsViewModel = hiltViewModel<LocationsListViewModel>()
+
             LocationsListScreen(viewModel = locationsViewModel)
         }
-        composable(route = Route.CharactersListScreen.route) {
-            val charactersViewModel = hiltViewModel<CharactersListViewModel>()
-            CharactersListScreen(viewModel = charactersViewModel)
+
+        composable(route = Route.OrganizationsListScreen.route) {
+            val organizationsListViewModel = hiltViewModel<OrganizationsListViewModel>()
+
+            OrganizationsListScreen(viewModel = organizationsListViewModel)
         }
     }
 }

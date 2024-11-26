@@ -5,7 +5,7 @@ import com.example.attackontitan.data.model.locations.LocationBaseInfo
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface LocationsListApiService {
+interface LocationApiService {
     @GET("locations")
     suspend fun getLocations(
         @Query("page")page: Int

@@ -8,10 +8,10 @@ import com.example.attackontitan.data.repository.characters.CharactersListReposi
 import com.example.attackontitan.data.repository.characters.CharactersListRepositoryImpl
 import com.example.attackontitan.data.repository.locations.LocationsListRepository
 import com.example.attackontitan.data.repository.locations.LocationsListRepositoryImpl
-import com.example.attackontitan.data.service.CharactersListApiService
-import com.example.attackontitan.data.service.LocationsListApiService
-import com.example.attackontitan.data.service.OrganizationsListApiService
-import com.example.attackontitan.data.service.TitansListApiService
+import com.example.attackontitan.data.service.CharacterApiService
+import com.example.attackontitan.data.service.LocationApiService
+import com.example.attackontitan.data.service.OrganizationApiService
+import com.example.attackontitan.data.service.TitanApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,41 +38,41 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideTitansApi(): TitansListApiService =
-        retrofit.create(TitansListApiService::class.java)
+    fun provideTitansApi(): TitanApiService =
+        retrofit.create(TitanApiService::class.java)
 
     @Singleton
     @Provides
-    fun provideOrganizationsApi(): OrganizationsListApiService =
-        retrofit.create(OrganizationsListApiService::class.java)
+    fun provideOrganizationsApi(): OrganizationApiService =
+        retrofit.create(OrganizationApiService::class.java)
 
     @Singleton
     @Provides
-    fun provideCharactersApi(): CharactersListApiService =
-        retrofit.create(CharactersListApiService::class.java)
+    fun provideCharactersApi(): CharacterApiService =
+        retrofit.create(CharacterApiService::class.java)
 
     @Singleton
     @Provides
-    fun provideLocationsApi(): LocationsListApiService =
-        retrofit.create(LocationsListApiService::class.java)
+    fun provideLocationsApi(): LocationApiService =
+        retrofit.create(LocationApiService::class.java)
 
     @Singleton
     @Provides
-    fun provideTitansListRepository(api: TitansListApiService): TitansListRepository =
+    fun provideTitansListRepository(api: TitanApiService): TitansListRepository =
         TitansListRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideOrganizationsListRepository(api: OrganizationsListApiService): OrganizationsListRepository =
+    fun provideOrganizationsListRepository(api: OrganizationApiService): OrganizationsListRepository =
         OrganizationsListRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideCharactersListRepository(api: CharactersListApiService) : CharactersListRepository =
+    fun provideCharactersListRepository(api: CharacterApiService) : CharactersListRepository =
         CharactersListRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideLocationsListRepository(api: LocationsListApiService) : LocationsListRepository =
+    fun provideLocationsListRepository(api: LocationApiService) : LocationsListRepository =
         LocationsListRepositoryImpl(api)
 }
