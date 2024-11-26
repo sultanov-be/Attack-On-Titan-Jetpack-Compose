@@ -4,7 +4,7 @@ import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.model.titans.TitanBaseInfo
 import com.example.attackontitan.data.model.titans.TitanDetails
 import com.example.attackontitan.data.repository.DefaultListRepository
-import com.example.attackontitan.data.service.TitansListApiService
+import com.example.attackontitan.data.service.TitanApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ interface TitansListRepository {
 }
 
 class TitansListRepositoryImpl @Inject constructor(
-    private val api: TitansListApiService
+    private val api: TitanApiService
 ) : TitansListRepository {
     override suspend fun getTitansList(): Resource<List<TitanBaseInfo>> {
         return DefaultListRepository { api.getTitansList() }.getList()
@@ -23,7 +23,7 @@ class TitansListRepositoryImpl @Inject constructor(
 
     override suspend fun getTitanDetails(id: Int): Resource<TitanDetails> {
         return try {
-            val response = api.getTitanDetails(id)
+            val response = api.getTitanById(id)
             if (response.isSuccessful) {
                 val titanDetails = response.body()
 

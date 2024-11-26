@@ -8,12 +8,12 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface TitansListApiService {
+interface TitanApiService {
     @GET("titans")
     suspend fun getTitansList(): ApiResponse<TitanBaseInfo>
 
     @GET("titans/{id}")
-    suspend fun getTitanDetails(@Path("id") id: Int) : Response<TitanDetails>
+    suspend fun getTitanById(@Path("id") id: Int) : Response<TitanDetails>
 
     @GET("characters/{id}")
     suspend fun getCharacterName(@Path("id") id: Int) : Response<CharacterBaseInfo>
