@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface LocationsListApiService {
-    @GET
+    @GET("locations")
     suspend fun getLocations(
         @Query("page")page: Int
     ): ApiResponse<LocationBaseInfo>
