@@ -26,7 +26,7 @@ fun TitanDetailsScreenBody(
 
     Column(
         modifier = Modifier
-            .padding(top = 30.dp)
+            .padding(top = 8.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

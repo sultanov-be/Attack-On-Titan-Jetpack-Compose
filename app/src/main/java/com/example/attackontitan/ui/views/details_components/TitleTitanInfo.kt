@@ -1,6 +1,7 @@
 package com.example.attackontitan.ui.views.details_components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -24,7 +25,7 @@ fun TitleTitanInfo(name: String, img: String) {
         textAlign = TextAlign.Center
     )
     Card(
-        modifier = Modifier.size(200.dp),
+        modifier = Modifier.padding(vertical = 20.dp),
         shape = CircleShape
     ) {
         AsyncImage(
