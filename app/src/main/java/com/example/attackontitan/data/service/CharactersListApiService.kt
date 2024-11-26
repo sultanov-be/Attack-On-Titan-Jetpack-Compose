@@ -1,7 +1,7 @@
 package com.example.attackontitan.data.service
 
 import com.example.attackontitan.data.model.ApiResponse
-import com.example.attackontitan.data.model.CharacterBaseInfo
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import retrofit2.http.GET
 import retrofit2.http.Query
 

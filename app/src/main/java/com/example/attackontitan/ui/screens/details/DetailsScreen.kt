@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.attackontitan.data.model.CharacterBaseInfo
-import com.example.attackontitan.data.model.TitanDetails
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.titans.TitanDetails
 import com.example.attackontitan.ui.views.GenericLoadingView
 import com.example.attackontitan.ui.views.details_components.ComplicatedDetailsItem
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem

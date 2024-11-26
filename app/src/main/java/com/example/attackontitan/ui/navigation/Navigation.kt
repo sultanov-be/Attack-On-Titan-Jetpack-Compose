@@ -12,6 +12,7 @@ import com.example.attackontitan.ui.screens.characters.CharactersListViewModel
 import com.example.attackontitan.ui.screens.details.DetailsScreen
 import com.example.attackontitan.ui.screens.home.HomeScreen
 import com.example.attackontitan.ui.screens.locations.LocationsListScreen
+import com.example.attackontitan.ui.screens.locations.LocationsListViewModel
 import com.example.attackontitan.ui.screens.organizations.OrganizationsListScreen
 import com.example.attackontitan.ui.screens.organizations.OrganizationsListViewModel
 import com.example.attackontitan.ui.screens.titans.TitanListScreen
@@ -60,7 +61,8 @@ fun Navigation() {
         }
 
         composable(route = Route.LocationsListScreen.route) {
-            LocationsListScreen()
+            val locationsViewModel = hiltViewModel<LocationsListViewModel>()
+            LocationsListScreen(viewModel = locationsViewModel)
         }
         composable(route = Route.CharactersListScreen.route) {
             val charactersViewModel = hiltViewModel<CharactersListViewModel>()

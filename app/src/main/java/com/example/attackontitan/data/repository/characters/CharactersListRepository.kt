@@ -3,7 +3,7 @@ package com.example.attackontitan.data.repository.characters
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.attackontitan.data.model.CharacterBaseInfo
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.service.CharactersListApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

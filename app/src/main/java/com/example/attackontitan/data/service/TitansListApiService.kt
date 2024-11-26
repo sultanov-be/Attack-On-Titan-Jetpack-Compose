@@ -1,9 +1,9 @@
 package com.example.attackontitan.data.service
 
 import com.example.attackontitan.data.model.ApiResponse
-import com.example.attackontitan.data.model.CharacterBaseInfo
-import com.example.attackontitan.data.model.TitanBaseInfo
-import com.example.attackontitan.data.model.TitanDetails
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.titans.TitanBaseInfo
+import com.example.attackontitan.data.model.titans.TitanDetails
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

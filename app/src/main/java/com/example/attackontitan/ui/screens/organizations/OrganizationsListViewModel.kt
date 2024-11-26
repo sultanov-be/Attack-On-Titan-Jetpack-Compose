@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.attackontitan.data.model.OrganizationBaseInfo
-import com.example.attackontitan.data.repository.OrganizationsListRepository
+import com.example.attackontitan.data.model.organizations.OrganizationBaseInfo
+import com.example.attackontitan.data.repository.organizations.OrganizationsListRepository
 import com.example.attackontitan.utils.BaseListViewModel
 import com.example.attackontitan.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
