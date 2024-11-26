@@ -8,12 +8,12 @@ data class CharacterDetails(
     val species: List<String>,
     val gender: String,
     val age: Int,
-    val relatives: Relatives,
     val birthplace: String,
     val residence: String,
     val status: String,
     val occupation: String,
-    val groups: Groups
+    val groups: List<Groups>,
+    val relatives: List<Relatives>
 )
 
 data class Relatives(
