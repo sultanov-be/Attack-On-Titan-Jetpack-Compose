@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.attackontitan.ui.navigation.Route
 import com.example.attackontitan.ui.views.GenericLoadingView
 import com.example.attackontitan.ui.views.ListItem
 
@@ -20,11 +21,13 @@ fun CharactersListScreen(viewModel: CharactersListViewModel, navController: NavH
         }
 
         items(characterPagingData.itemCount) {index ->
-            characterPagingData[index]?.let {
+            characterPagingData[index]?.let { character ->
                 ListItem(
-                    imageUrl = it.img,
-                    title = it.name,
-                    onClick = {}
+                    imageUrl = character.img,
+                    title = character.name,
+                    onClick = {
+                        navController.navigate(Route.CharacterDetailsScreen.withArgs(character.id.toString()))
+                    }
                 )
             }
         }

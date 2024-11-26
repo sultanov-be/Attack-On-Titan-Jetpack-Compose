@@ -50,10 +50,10 @@ fun Navigation() {
         composable(
             route = Route.TitanDetailsScreen.route + "/{titanId}",
             arguments = listOf(navArgument("titanId") {
-                type = NavType.StringType
+                type = NavType.IntType
             })
         ) { navBackStackEntry ->
-            val itemId = navBackStackEntry.arguments?.getString("titanId")
+            val itemId = navBackStackEntry.arguments?.getInt("titanId")
 
             itemId?.let {
                 TitanDetailsScreen(titanId = it)
@@ -63,10 +63,10 @@ fun Navigation() {
         composable(
             route = Route.CharacterDetailsScreen.route + "/{characterId}",
             arguments = listOf(navArgument("characterId") {
-                type = NavType.StringType
+                type = NavType.IntType
             })
         ) { navBackStackEntry ->
-            val characterId = navBackStackEntry.arguments?.getString("characterId")
+            val characterId = navBackStackEntry.arguments?.getInt("characterId")
 
             characterId?.let {
                 CharacterDetailsScreen(characterId = it)

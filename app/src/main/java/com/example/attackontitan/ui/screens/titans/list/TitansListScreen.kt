@@ -18,7 +18,7 @@ fun TitanListScreen(
                 imageUrl = titan.img,
                 title = titan.name,
                 onClick = {
-                    navController.navigate(Route.DetailsScreen.withArgs(titan.id.toString()))
+                    navController.navigate(Route.TitanDetailsScreen.withArgs(titan.id.toString()))
                 }
             )
         }

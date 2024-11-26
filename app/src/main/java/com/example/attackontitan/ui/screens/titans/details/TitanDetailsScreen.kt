@@ -21,11 +21,11 @@ import com.example.attackontitan.ui.views.details_components.TitleTitanInfo
 import com.example.attackontitan.utils.Resource
 
 @Composable
-fun TitanDetailsScreen(titanId: String) {
+fun TitanDetailsScreen(titanId: Int) {
     val detailsViewModel: TitanDetailsViewModel = hiltViewModel()
 
     LaunchedEffect(titanId) {
-        detailsViewModel.getTitanDetails(titanId.toInt())
+        detailsViewModel.getTitanDetails(titanId)
     }
 
     val titanDetails by detailsViewModel.titanDetails.observeAsState()
