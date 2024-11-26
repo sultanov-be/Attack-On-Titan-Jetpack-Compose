@@ -1,7 +1,6 @@
 package com.example.attackontitan.ui.views.organization
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,12 +24,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.attackontitan.R
-import com.example.attackontitan.data.model.organizations.OrganizationBaseInfo
+import com.example.attackontitan.data.model.locations.LocationBaseInfo
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 
 @Composable
 fun ListItemExtra(
-    content: OrganizationBaseInfo
+    content: LocationBaseInfo
 ) {
 
     Card(
@@ -56,15 +55,18 @@ fun ListItemExtra(
                             .padding(2.dp)
                     )
                 }
-                Text(
-                    modifier = Modifier
-                        .background(color = Color.White.copy(0.5f))
-                        .fillMaxWidth()
-                        .padding(top = 10.dp),
-                    text = content.name.uppercase(),
-                    textAlign = TextAlign.Center
-                )
-
+                Column {
+                    Text(
+                        modifier = Modifier
+                            .background(color = Color.White.copy(0.5f))
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
+                        text = content.name.uppercase(),
+                        textAlign = TextAlign.Center
+                    )
+                    SimpleDetailsItem(title = "Region", content = content.region)
+                    SimpleDetailsItem(title = "Territory", content = content.territory)
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,9 +18,11 @@ import com.example.attackontitan.utils.firstToCapital
 
 @Composable
 fun SimpleDetailsItem(title: String, content: String) {
+    HorizontalDivider()
     Row(
         modifier = Modifier
-            .padding(top = 8.dp)
+            .background(color = Color.White.copy(0.5f))
+            .padding(top = 4.dp, start = 4.dp, end = 8.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
@@ -31,7 +34,6 @@ fun SimpleDetailsItem(title: String, content: String) {
         )
         Text(
             modifier = Modifier
-                .background(color = Color.White.copy(0.5f))
                 .fillMaxWidth(),
             text = content,
             textAlign = TextAlign.End

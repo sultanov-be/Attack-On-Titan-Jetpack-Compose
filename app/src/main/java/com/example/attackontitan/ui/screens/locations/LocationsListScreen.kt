@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.attackontitan.ui.views.GenericLoadingView
-import com.example.attackontitan.ui.views.ListItem
+import com.example.attackontitan.ui.views.organization.ListItemExtra
 
 @Composable
 fun LocationsListScreen(viewModel: LocationsListViewModel) {
@@ -20,10 +20,8 @@ fun LocationsListScreen(viewModel: LocationsListViewModel) {
 
         items(locationPagingData.itemCount) {index ->
             locationPagingData[index]?.let {
-                ListItem(
-                    imageUrl = it.img,
-                    title = it.name,
-                    onClick = {}
+                ListItemExtra(
+                    content = it
                 )
             }
         }
