@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LocationsListViewModel @Inject constructor(
-    private val repository: LocationsListRepository
+    val repository: LocationsListRepository
 ) : ViewModel() {
 
     val locationsPagingData: Flow<PagingData<LocationBaseInfo>> =

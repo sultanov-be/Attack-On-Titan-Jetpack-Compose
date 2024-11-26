@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersListViewModel @Inject constructor(
-    private val repository: CharactersListRepository
+    val repository: CharactersListRepository
 ) : ViewModel() {
 
     val charactersPagingData: Flow<PagingData<CharacterBaseInfo>> =
