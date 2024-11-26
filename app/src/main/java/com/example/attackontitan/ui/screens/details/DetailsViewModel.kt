@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.attackontitan.data.model.CharacterBaseInfo
-import com.example.attackontitan.data.model.TitanDetails
-import com.example.attackontitan.data.repository.TitansListRepository
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.titans.TitanDetails
+import com.example.attackontitan.data.repository.titans.TitansListRepository
 import com.example.attackontitan.utils.Resource
 import com.example.attackontitan.utils.extractIdFromUrl
 import dagger.hilt.android.lifecycle.HiltViewModel

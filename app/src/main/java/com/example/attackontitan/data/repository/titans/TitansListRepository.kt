@@ -1,8 +1,9 @@
-package com.example.attackontitan.data.repository
+package com.example.attackontitan.data.repository.titans
 
-import com.example.attackontitan.data.model.CharacterBaseInfo
-import com.example.attackontitan.data.model.TitanBaseInfo
-import com.example.attackontitan.data.model.TitanDetails
+import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.titans.TitanBaseInfo
+import com.example.attackontitan.data.model.titans.TitanDetails
+import com.example.attackontitan.data.repository.DefaultListRepository
 import com.example.attackontitan.data.service.TitansListApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject

@@ -1,6 +1,7 @@
-package com.example.attackontitan.data.repository
+package com.example.attackontitan.data.repository.organizations
 
-import com.example.attackontitan.data.model.OrganizationBaseInfo
+import com.example.attackontitan.data.model.organizations.OrganizationBaseInfo
+import com.example.attackontitan.data.repository.DefaultListRepository
 import com.example.attackontitan.data.service.OrganizationsListApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject

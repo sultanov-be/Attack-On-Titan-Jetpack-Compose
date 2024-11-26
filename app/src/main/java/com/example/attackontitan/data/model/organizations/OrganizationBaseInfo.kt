@@ -1,4 +1,4 @@
-package com.example.attackontitan.data.model
+package com.example.attackontitan.data.model.organizations
 
 data class OrganizationBaseInfo(
     val id: Int,

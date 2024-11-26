@@ -1,7 +1,7 @@
 package com.example.attackontitan.data.service
 
 import com.example.attackontitan.data.model.ApiResponse
-import com.example.attackontitan.data.model.LocationBaseInfo
+import com.example.attackontitan.data.model.locations.LocationBaseInfo
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,9 +1,9 @@
 package com.example.attackontitan.di
 
-import com.example.attackontitan.data.repository.OrganizationsListRepository
-import com.example.attackontitan.data.repository.OrganizationsListRepositoryImpl
-import com.example.attackontitan.data.repository.TitansListRepository
-import com.example.attackontitan.data.repository.TitansListRepositoryImpl
+import com.example.attackontitan.data.repository.organizations.OrganizationsListRepository
+import com.example.attackontitan.data.repository.organizations.OrganizationsListRepositoryImpl
+import com.example.attackontitan.data.repository.titans.TitansListRepository
+import com.example.attackontitan.data.repository.titans.TitansListRepositoryImpl
 import com.example.attackontitan.data.repository.characters.CharactersListRepository
 import com.example.attackontitan.data.repository.characters.CharactersListRepositoryImpl
 import com.example.attackontitan.data.repository.locations.LocationsListRepository

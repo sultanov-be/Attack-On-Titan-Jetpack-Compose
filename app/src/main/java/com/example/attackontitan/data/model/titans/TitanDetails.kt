@@ -1,4 +1,4 @@
-package com.example.attackontitan.data.model
+package com.example.attackontitan.data.model.titans
 
 data class TitanDetails(
     val id: Int,

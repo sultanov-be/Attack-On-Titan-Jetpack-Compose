@@ -1,4 +1,4 @@
-package com.example.attackontitan.data.model
+package com.example.attackontitan.data.model.locations
 
 data class LocationBaseInfo(
     val id: Int,

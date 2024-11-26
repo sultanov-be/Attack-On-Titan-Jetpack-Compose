@@ -1,6 +1,6 @@
 package com.example.attackontitan.data.repository.locations
 
-import com.example.attackontitan.data.model.LocationBaseInfo
+import com.example.attackontitan.data.model.locations.LocationBaseInfo
 import com.example.attackontitan.data.repository.BasePagingSource
 import com.example.attackontitan.data.service.LocationsListApiService
 

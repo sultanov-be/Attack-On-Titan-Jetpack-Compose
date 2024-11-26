@@ -1,4 +1,4 @@
-package com.example.attackontitan.data.model
+package com.example.attackontitan.data.model.characters
 
 class CharacterBaseInfo(
     val id: Int,
