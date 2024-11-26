@@ -3,9 +3,7 @@ package com.example.attackontitan.data.repository.locations
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.attackontitan.data.model.CharacterBaseInfo
 import com.example.attackontitan.data.model.LocationBaseInfo
-import com.example.attackontitan.data.repository.characters.CharactersPagingSource
 import com.example.attackontitan.data.service.LocationsListApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
