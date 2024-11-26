@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.attackontitan.ui.screens.characters.details.CharacterDetailsScreen
+import com.example.attackontitan.ui.screens.characters.details.CharacterDetailsViewModel
 import com.example.attackontitan.ui.screens.characters.list.CharactersListScreen
 import com.example.attackontitan.ui.screens.characters.list.CharactersListViewModel
 import com.example.attackontitan.ui.screens.home.HomeScreen
@@ -29,7 +30,7 @@ fun Navigation() {
             HomeScreen(navController = navController)
         }
 
-        composable(route = Route.TitansListScreen.route,) {
+        composable(route = Route.TitansListScreen.route) {
             val titanViewModel = hiltViewModel<TitansListViewModel>()
 
             TitanListScreen(
@@ -67,9 +68,13 @@ fun Navigation() {
             })
         ) { navBackStackEntry ->
             val characterId = navBackStackEntry.arguments?.getInt("characterId")
+            val characterViewModel = hiltViewModel<CharacterDetailsViewModel>()
 
             characterId?.let {
-                CharacterDetailsScreen(characterId = it)
+                CharacterDetailsScreen(
+                    viewModel = characterViewModel,
+                    characterId = it
+                )
             }
         }
 
