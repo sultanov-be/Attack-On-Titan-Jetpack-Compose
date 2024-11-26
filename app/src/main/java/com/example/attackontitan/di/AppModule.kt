@@ -6,7 +6,10 @@ import com.example.attackontitan.data.repository.TitansListRepository
 import com.example.attackontitan.data.repository.TitansListRepositoryImpl
 import com.example.attackontitan.data.repository.characters.CharactersListRepository
 import com.example.attackontitan.data.repository.characters.CharactersListRepositoryImpl
+import com.example.attackontitan.data.repository.locations.LocationsListRepository
+import com.example.attackontitan.data.repository.locations.LocationsListRepositoryImpl
 import com.example.attackontitan.data.service.CharactersListApiService
+import com.example.attackontitan.data.service.LocationsListApiService
 import com.example.attackontitan.data.service.OrganizationsListApiService
 import com.example.attackontitan.data.service.TitansListApiService
 import dagger.Module
@@ -48,6 +51,10 @@ object AppModule {
     fun provideCharactersApi(): CharactersListApiService =
         retrofit.create(CharactersListApiService::class.java)
 
+    @Singleton
+    @Provides
+    fun provideLocationsApi(): LocationsListApiService =
+        retrofit.create(LocationsListApiService::class.java)
 
     @Singleton
     @Provides
@@ -63,4 +70,9 @@ object AppModule {
     @Provides
     fun provideCharactersListRepository(api: CharactersListApiService) : CharactersListRepository =
         CharactersListRepositoryImpl(api)
+
+    @Singleton
+    @Provides
+    fun provideLocationsListRepository(api: LocationsListApiService) : LocationsListRepository =
+        LocationsListRepositoryImpl(api)
 }
