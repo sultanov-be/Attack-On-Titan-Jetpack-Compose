@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,6 +27,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.attackontitan.R
+import com.example.attackontitan.data.model.locations.LocationBaseInfo
+import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 
 @Composable
 fun ListItem(
@@ -74,6 +77,51 @@ fun ListItem(
                 text = title.uppercase(),
                 textAlign = TextAlign.Center
             )
+        }
+    }
+}
+
+@Composable
+fun ListItemExtra(
+    content: LocationBaseInfo
+) {
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceContainer),
+        shape = RectangleShape
+    ) {
+        Column {
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(shape = RoundedCornerShape(10.dp)) {
+                    AsyncImage(
+                        model = content.img,
+                        contentDescription = content.name,
+                        placeholder = painterResource(R.drawable.img),
+                        error = painterResource(R.drawable.img),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(150.dp)
+                            .padding(2.dp)
+                    )
+                }
+                Column {
+                    Text(
+                        modifier = Modifier
+                            .background(color = Color.White.copy(0.5f))
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
+                        text = content.name.uppercase(),
+                        textAlign = TextAlign.Center
+                    )
+                    SimpleDetailsItem(title = "Region", content = content.region)
+                    SimpleDetailsItem(title = "Territory", content = content.territory)
+                }
+            }
         }
     }
 }
