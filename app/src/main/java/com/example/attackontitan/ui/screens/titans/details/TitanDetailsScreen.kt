@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens.details
+package com.example.attackontitan.ui.screens.titans.details
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +21,11 @@ import com.example.attackontitan.ui.views.details_components.TitleTitanInfo
 import com.example.attackontitan.utils.Resource
 
 @Composable
-fun DetailsScreen(itemId: String) {
-    val detailsViewModel: DetailsViewModel = hiltViewModel()
+fun TitanDetailsScreen(titanId: String) {
+    val detailsViewModel: TitanDetailsViewModel = hiltViewModel()
 
-    LaunchedEffect(itemId) {
-        detailsViewModel.getTitanDetails(itemId.toInt())
+    LaunchedEffect(titanId) {
+        detailsViewModel.getTitanDetails(titanId.toInt())
     }
 
     val titanDetails by detailsViewModel.titanDetails.observeAsState()

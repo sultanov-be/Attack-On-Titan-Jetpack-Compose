@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens.characters
+package com.example.attackontitan.ui.screens.characters.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

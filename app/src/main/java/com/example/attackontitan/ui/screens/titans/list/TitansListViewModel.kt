@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens.titans
+package com.example.attackontitan.ui.screens.titans.list
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens.details
+package com.example.attackontitan.ui.screens.titans.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(
+class TitanDetailsViewModel @Inject constructor(
     private val repository: TitansListRepository
 ) : ViewModel() {
 

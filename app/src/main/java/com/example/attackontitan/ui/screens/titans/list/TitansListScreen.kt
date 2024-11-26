@@ -1,4 +1,4 @@
-package com.example.attackontitan.ui.screens.titans
+package com.example.attackontitan.ui.screens.titans.list
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
@@ -9,10 +9,10 @@ import com.example.attackontitan.ui.views.ListItem
 @Composable
 fun TitanListScreen(
     navController: NavController,
-    titanViewModel: TitansListViewModel
+    viewModel: TitansListViewModel
 ) {
     GenericListScreen(
-        viewModel = titanViewModel,
+        viewModel = viewModel,
         itemContent = { titan ->
             ListItem(
                 imageUrl = titan.img,

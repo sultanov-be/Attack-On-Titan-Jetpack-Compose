@@ -1,14 +1,15 @@
-package com.example.attackontitan.ui.screens.characters
+package com.example.attackontitan.ui.screens.characters.list
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.attackontitan.ui.views.GenericLoadingView
 import com.example.attackontitan.ui.views.ListItem
 
 @Composable
-fun CharactersListScreen(viewModel: CharactersListViewModel) {
+fun CharactersListScreen(viewModel: CharactersListViewModel, navController: NavHostController) {
     val characterPagingData = viewModel.charactersPagingData.collectAsLazyPagingItems()
 
     LazyColumn {
