@@ -20,7 +20,7 @@ import com.example.attackontitan.utils.Resource
 fun TitanDetailsScreenBody(
     details: TitanDetails,
     characterDetails: Resource<CharacterBaseInfo>?,
-    formerInheritorNames: Resource<List<String>>?,
+    formerInheritorNames: Resource<List<CharacterBaseInfo>>?,
     navController: NavController
 ) {
 
@@ -41,7 +41,7 @@ fun TitanDetailsScreenBody(
 
         SimpleDetailsItem(title = "height", content = details.height)
         SimpleDetailsItem(title = "allegiance", content = details.allegiance)
-        ComplicatedDetailsItem("former inheritors", list = names)
+        ComplicatedDetailsItem("former inheritors", list = names, navController = navController)
         ComplicatedDetailsItem("abilities", list = details.abilities)
     }
 }
@@ -53,10 +53,9 @@ private fun getInheritorName(characterDetails: Resource<CharacterBaseInfo>?): Ch
     }
 }
 
-private fun getFormerInheritorNames(formerInheritorNames: Resource<List<String>>?): List<String> {
+private fun getFormerInheritorNames(formerInheritorNames: Resource<List<CharacterBaseInfo>>?): List<CharacterBaseInfo> {
     return when (formerInheritorNames) {
         is Resource.Success -> formerInheritorNames.data
-        is Resource.Loading -> listOf("Loading...")
-        else -> listOf("Unknown")
+        else -> listOf()
     }
 }

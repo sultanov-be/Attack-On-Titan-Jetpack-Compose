@@ -24,8 +24,8 @@ class TitanDetailsViewModel @Inject constructor(
     private val _characterDetails = MutableLiveData<Resource<CharacterBaseInfo>>()
     val characterDetails: LiveData<Resource<CharacterBaseInfo>> = _characterDetails
 
-    private val _formerInheritorNames = MutableLiveData<Resource<List<String>>>()
-    val formerInheritorNames: LiveData<Resource<List<String>>> = _formerInheritorNames
+    private val _formerInheritorNames = MutableLiveData<Resource<List<CharacterBaseInfo>>>()
+    val formerInheritorNames: LiveData<Resource<List<CharacterBaseInfo>>> = _formerInheritorNames
 
     fun getTitanDetails(id: Int) {
         viewModelScope.launch {
@@ -47,13 +47,13 @@ class TitanDetailsViewModel @Inject constructor(
     fun getFormerInheritorNames(urls: List<String>) {
         viewModelScope.launch {
             _formerInheritorNames.value = Resource.Loading
-            val names = mutableListOf<String>()
+            val names = mutableListOf<CharacterBaseInfo>()
             val errors = mutableListOf<String>()
 
             for (url in urls) {
                 val result = url.extractIdFromUrl()?.let { repository.getCharacterName(it) }
                 when (result) {
-                    is Resource.Success -> names.add(result.data.name)
+                    is Resource.Success -> names.add(result.data)
                     is Resource.Error -> errors.add(url)
                     else -> Unit
                 }
