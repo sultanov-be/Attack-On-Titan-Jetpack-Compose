@@ -110,7 +110,7 @@ fun ComplicatedDetailsItem(title: String, list: List<CharacterBaseInfo>, navCont
                             navController.navigate(Route.CharacterDetailsScreen.withArgs(items.id.toString()))
                         },
                         fontSize = 20.sp,
-                        text = "${items.name} and id ${items.id}"
+                        text = items.name
                     )
                 }
             }

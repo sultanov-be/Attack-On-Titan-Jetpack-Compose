@@ -20,14 +20,10 @@ fun CharacterDetailsScreenBody(character: CharacterDetails) {
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val formattedAge = when(val age = character.age) {
-            is Int -> age.toInt().toString()
-            else -> age.toString()
-        }
 
         TitleImageInfo(name = character.name, img = character.img)
         SimpleDetailsItem(title = "gender", content = character.gender)
-        SimpleDetailsItem(title = "age", content = formattedAge)
+        SimpleDetailsItem(title = "age", content = formattedAge(character.age).toString())
         SimpleDetailsItem(title = "birthplace", content = character.birthplace)
         SimpleDetailsItem(title = "residence", content = character.residence)
         SimpleDetailsItem(title = "status", content = character.status)
@@ -36,3 +32,5 @@ fun CharacterDetailsScreenBody(character: CharacterDetails) {
         ComplicatedDetailsItem("species", list = character.species)
     }
 }
+
+fun formattedAge(age: Any) = if (age == "unknown") age else age.toString().dropLast(2)
