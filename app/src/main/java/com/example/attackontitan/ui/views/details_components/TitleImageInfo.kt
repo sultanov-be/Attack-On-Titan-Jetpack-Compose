@@ -17,7 +17,7 @@ import coil.compose.AsyncImage
 import com.example.attackontitan.R
 
 @Composable
-fun TitleTitanInfo(name: String, img: String) {
+fun TitleImageInfo(name: String, img: String) {
     Text(
         text = name,
         fontSize = 32.sp,
@@ -28,13 +28,18 @@ fun TitleTitanInfo(name: String, img: String) {
         modifier = Modifier.padding(vertical = 20.dp),
         shape = CircleShape
     ) {
-        AsyncImage(
-            model = img,
-            placeholder = painterResource(R.drawable.img),
-            error = painterResource(R.drawable.img),
-            contentDescription = null,
-            modifier = Modifier.size(200.dp),
-            contentScale = ContentScale.Crop
-        )
+        Card(
+            modifier = Modifier.padding(4.dp),
+            shape = CircleShape
+        ) {
+            AsyncImage(
+                model = img,
+                placeholder = painterResource(R.drawable.img),
+                error = painterResource(R.drawable.img),
+                contentDescription = null,
+                modifier = Modifier.size(250.dp),
+                contentScale = ContentScale.Crop
+            )
+        }
     }
 }

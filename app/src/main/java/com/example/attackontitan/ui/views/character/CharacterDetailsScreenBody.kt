@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.example.attackontitan.data.model.characters.CharacterDetails
 import com.example.attackontitan.ui.views.details_components.ComplicatedDetailsItem
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
-import com.example.attackontitan.ui.views.details_components.TitleTitanInfo
+import com.example.attackontitan.ui.views.details_components.TitleImageInfo
 
 @Composable
 fun CharacterDetailsScreenBody(character: CharacterDetails) {
@@ -20,7 +20,7 @@ fun CharacterDetailsScreenBody(character: CharacterDetails) {
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TitleTitanInfo(name = character.name, img = character.img)
+        TitleImageInfo(name = character.name, img = character.img)
         SimpleDetailsItem(title = "gender", content = character.gender)
         SimpleDetailsItem(title = "age", content = character.age.toString())
         SimpleDetailsItem(title = "birthplace", content = character.birthplace)

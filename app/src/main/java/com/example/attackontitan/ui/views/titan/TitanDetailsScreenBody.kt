@@ -11,7 +11,7 @@ import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.model.titans.TitanDetails
 import com.example.attackontitan.ui.views.details_components.ComplicatedDetailsItem
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
-import com.example.attackontitan.ui.views.details_components.TitleTitanInfo
+import com.example.attackontitan.ui.views.details_components.TitleImageInfo
 import com.example.attackontitan.utils.Resource
 
 @Composable
@@ -30,7 +30,7 @@ fun TitanDetailsScreenBody(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TitleTitanInfo(name = details.name, img = details.img)
+        TitleImageInfo(name = details.name, img = details.img)
         SimpleDetailsItem(title = "height", content = details.height)
         SimpleDetailsItem(title = "current inheritor", content = inheritorName)
         SimpleDetailsItem(title = "allegiance", content = details.allegiance)

@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,14 +37,14 @@ fun ListItem(
     title: String,
     onClick: () -> Unit = {}
 ) {
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
             .height(150.dp)
             .clickable { onClick() },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceContainer),
-        shape = RectangleShape
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.surfaceContainer),
+        shape = RoundedCornerShape(8.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceAround,
@@ -114,7 +115,7 @@ fun ListItemExtra(
                         modifier = Modifier
                             .background(color = Color.White.copy(0.5f))
                             .fillMaxWidth()
-                            .padding(top = 10.dp),
+                            .padding(top = 2.dp),
                         text = content.name.uppercase(),
                         textAlign = TextAlign.Center
                     )
