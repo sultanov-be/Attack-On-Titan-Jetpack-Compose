@@ -7,8 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.model.titans.TitanDetails
+import com.example.attackontitan.ui.navigation.Route
 import com.example.attackontitan.ui.views.details_components.ComplicatedDetailsItem
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 import com.example.attackontitan.ui.views.details_components.TitleImageInfo
@@ -18,7 +20,8 @@ import com.example.attackontitan.utils.Resource
 fun TitanDetailsScreenBody(
     details: TitanDetails,
     characterDetails: Resource<CharacterBaseInfo>?,
-    formerInheritorNames: Resource<List<String>>?
+    formerInheritorNames: Resource<List<CharacterBaseInfo>>?,
+    navController: NavController
 ) {
 
     val inheritorName = getInheritorName(characterDetails)
@@ -31,26 +34,28 @@ fun TitanDetailsScreenBody(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TitleImageInfo(name = details.name, img = details.img)
+
+        SimpleDetailsItem(title = "current inheritor", content = inheritorName?.name) {
+            navController.navigate(Route.CharacterDetailsScreen.withArgs(inheritorName?.id.toString()))
+        }
+
         SimpleDetailsItem(title = "height", content = details.height)
-        SimpleDetailsItem(title = "current inheritor", content = inheritorName)
         SimpleDetailsItem(title = "allegiance", content = details.allegiance)
-        ComplicatedDetailsItem("former inheritors", list = names)
+        ComplicatedDetailsItem("former inheritors", list = names, navController = navController)
         ComplicatedDetailsItem("abilities", list = details.abilities)
     }
 }
 
-private fun getInheritorName(characterDetails: Resource<CharacterBaseInfo>?): String {
+private fun getInheritorName(characterDetails: Resource<CharacterBaseInfo>?): CharacterBaseInfo? {
     return when (characterDetails) {
-        is Resource.Success -> characterDetails.data.name
-        is Resource.Loading -> "Loading..."
-        else -> "Unknown"
+        is Resource.Success -> characterDetails.data
+        else -> null
     }
 }
 
-private fun getFormerInheritorNames(formerInheritorNames: Resource<List<String>>?): List<String> {
+private fun getFormerInheritorNames(formerInheritorNames: Resource<List<CharacterBaseInfo>>?): List<CharacterBaseInfo> {
     return when (formerInheritorNames) {
         is Resource.Success -> formerInheritorNames.data
-        is Resource.Loading -> listOf("Loading...")
-        else -> listOf("Unknown")
+        else -> listOf()
     }
 }

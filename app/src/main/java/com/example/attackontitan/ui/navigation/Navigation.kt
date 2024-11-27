@@ -57,7 +57,7 @@ fun Navigation() {
             val itemId = navBackStackEntry.arguments?.getInt("titanId")
 
             itemId?.let {
-                TitanDetailsScreen(titanId = it)
+                TitanDetailsScreen(titanId = it, navController = navController)
             }
         }
 

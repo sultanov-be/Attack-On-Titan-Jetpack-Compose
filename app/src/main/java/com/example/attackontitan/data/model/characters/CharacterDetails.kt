@@ -7,7 +7,7 @@ data class CharacterDetails(
     val alias: List<String>,
     val species: List<String>,
     val gender: String,
-    val age: Int,
+    val age: Any,
     val birthplace: String,
     val residence: String,
     val status: String,

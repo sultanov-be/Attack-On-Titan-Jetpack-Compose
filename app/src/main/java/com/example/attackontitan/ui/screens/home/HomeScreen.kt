@@ -44,7 +44,7 @@ fun HomeScreenGrid(navController: NavController, modifier: Modifier) {
         )
         MainGridItem(
             modifier = Modifier.weight(1f),
-            text = "Locations",
+            text = "Characters",
             img = painterResource(R.drawable.img_characters),
             onClick = { navController.navigate(Route.CharactersListScreen.route) }
         )
@@ -56,7 +56,7 @@ fun HomeScreenGrid(navController: NavController, modifier: Modifier) {
 
         MainGridItem(
             modifier = Modifier.weight(1f),
-            text = "Characters",
+            text = "Locations",
             img = painterResource(R.drawable.img_locations),
             onClick = { navController.navigate(Route.LocationsListScreen.route) }
         )
