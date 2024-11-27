@@ -2,6 +2,7 @@ package com.example.attackontitan.ui.views.details_components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +21,11 @@ import androidx.compose.ui.unit.sp
 import com.example.attackontitan.utils.firstToCapital
 
 @Composable
-fun SimpleDetailsItem(title: String, content: String) {
+fun SimpleDetailsItem(title: String, content: String?, onClick: () -> Unit = {}) {
     OutlinedCard(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(4.dp).clickable { onClick() },
         shape = RoundedCornerShape(4.dp),
-        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.surfaceVariant),
     ) {
         Row(
             modifier = Modifier
@@ -43,7 +44,7 @@ fun SimpleDetailsItem(title: String, content: String) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth().padding(end = 4.dp),
-                text = content,
+                text = content ?: "Loading",
                 textAlign = TextAlign.End,
                 fontSize = 18.sp
             )

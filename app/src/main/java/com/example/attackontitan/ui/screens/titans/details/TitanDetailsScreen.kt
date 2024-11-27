@@ -6,12 +6,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.example.attackontitan.ui.views.GenericLoadingView
 import com.example.attackontitan.ui.views.titan.TitanDetailsScreenBody
 import com.example.attackontitan.utils.Resource
 
 @Composable
-fun TitanDetailsScreen(titanId: Int) {
+fun TitanDetailsScreen(titanId: Int, navController: NavHostController) {
     val detailsViewModel: TitanDetailsViewModel = hiltViewModel()
 
     LaunchedEffect(titanId) {
@@ -34,7 +35,11 @@ fun TitanDetailsScreen(titanId: Int) {
                 detailsViewModel.getFormerInheritorNames(details.former_inheritors)
             }
 
-            TitanDetailsScreenBody(details, characterDetails, formerInheritorNames)
+            TitanDetailsScreenBody(
+                details = details,
+                characterDetails = characterDetails,
+                formerInheritorNames = formerInheritorNames,
+                navController = navController)
         }
         else -> {
             Text("Error loading details")
