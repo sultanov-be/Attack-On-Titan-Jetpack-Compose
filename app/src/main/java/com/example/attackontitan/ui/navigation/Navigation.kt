@@ -27,7 +27,7 @@ fun Navigation() {
     NavHost(navController = navController, startDestination = Route.HomeScreen.route) {
 
         composable(route = Route.HomeScreen.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(navController)
         }
 
         composable(route = Route.TitansListScreen.route) {
