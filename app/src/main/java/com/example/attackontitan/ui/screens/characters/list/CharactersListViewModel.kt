@@ -7,7 +7,11 @@ import androidx.paging.cachedIn
 import com.example.attackontitan.data.model.characters.CharacterBaseInfo
 import com.example.attackontitan.data.repository.characters.CharactersListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,7 +19,18 @@ class CharactersListViewModel @Inject constructor(
     val repository: CharactersListRepository
 ) : ViewModel() {
 
-    val charactersPagingData: Flow<PagingData<CharacterBaseInfo>> =
-        repository.getCharacters().cachedIn(viewModelScope)
+    private val _query = MutableStateFlow<String?>(null)
+    val query: StateFlow<String?> = _query
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val charactersPagingData: Flow<PagingData<CharacterBaseInfo>> =
+        query
+            .flatMapLatest { query ->
+                repository.getCharacters(query)
+            }
+            .cachedIn(viewModelScope)
+
+    fun updateQuery(query: String) {
+        _query.value = query
+    }
 }
