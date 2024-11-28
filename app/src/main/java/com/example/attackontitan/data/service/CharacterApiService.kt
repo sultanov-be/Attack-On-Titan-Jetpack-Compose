@@ -15,5 +15,11 @@ interface CharacterApiService {
     ): ApiResponse<CharacterBaseInfo>
 
     @GET("characters/{id}")
-    suspend fun getCharacterById(@Path("id") id: Int) : Response<CharacterDetails>
+    suspend fun getCharacterById(@Path("id") id: Int): Response<CharacterDetails>
+
+    @GET("characters?name={query}")
+    suspend fun getCharactersFilteredByName(
+        @Query("page") page: Int,
+        @Query("query") query: String? = null
+    ): ApiResponse<CharacterBaseInfo>
 }
