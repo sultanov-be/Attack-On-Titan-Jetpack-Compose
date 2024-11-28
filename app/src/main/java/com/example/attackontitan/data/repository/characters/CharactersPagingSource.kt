@@ -5,8 +5,9 @@ import com.example.attackontitan.data.repository.BasePagingSource
 import com.example.attackontitan.data.service.CharacterApiService
 
 class CharactersPagingSource(
-    private val apiService: CharacterApiService
+    private val apiService: CharacterApiService,
+    private val query: String? = null
 ) : BasePagingSource<CharacterBaseInfo>(
     { page ->
-        apiService.getCharacters(page)
+            apiService.getCharacters(page, query)
     })

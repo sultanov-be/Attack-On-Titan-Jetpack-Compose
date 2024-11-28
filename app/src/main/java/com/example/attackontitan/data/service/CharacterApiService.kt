@@ -11,9 +11,10 @@ import retrofit2.http.Query
 interface CharacterApiService {
     @GET("characters")
     suspend fun getCharacters(
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("name") name: String? = null
     ): ApiResponse<CharacterBaseInfo>
 
     @GET("characters/{id}")
-    suspend fun getCharacterById(@Path("id") id: Int) : Response<CharacterDetails>
+    suspend fun getCharacterById(@Path("id") id: Int): Response<CharacterDetails>
 }
