@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.BaseDataModel
-import com.example.attackontitan.data.repository.organizations.OrganizationsListRepository
+import com.example.attackontitan.data.repository.organizations.OrganizationRepository
 import com.example.attackontitan.utils.BaseListViewModel
 import com.example.attackontitan.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrganizationsListViewModel @Inject constructor(
-    private val repository: OrganizationsListRepository
+    private val repository: OrganizationRepository
 ) : BaseListViewModel<BaseDataModel>() {
 
     private val _organizationsList = MutableLiveData<Resource<List<BaseDataModel>>>()

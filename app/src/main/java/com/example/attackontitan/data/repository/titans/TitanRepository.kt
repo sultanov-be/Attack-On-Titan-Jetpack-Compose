@@ -7,15 +7,15 @@ import com.example.attackontitan.data.service.TitanApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
-interface TitansListRepository {
+interface TitanRepository {
     suspend fun getTitansList(): Resource<List<BaseDataModel>>
     suspend fun getTitanDetails(id: Int): Resource<TitanDetails>
     suspend fun getCharacterName(id: Int): Resource<BaseDataModel>
 }
 
-class TitansListRepositoryImpl @Inject constructor(
+class TitanRepositoryImpl @Inject constructor(
     private val api: TitanApiService
-) : TitansListRepository {
+) : TitanRepository {
     override suspend fun getTitansList(): Resource<List<BaseDataModel>> =
         DefaultListRepositoryImpl { api.getTitansList() }.getList()
 

@@ -3,7 +3,7 @@ package com.example.attackontitan.ui.screens.characters.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.characters.CharacterDetails
-import com.example.attackontitan.data.repository.characters.CharactersListRepository
+import com.example.attackontitan.data.repository.characters.CharacterRepository
 import com.example.attackontitan.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailsViewModel @Inject constructor(
-    private val repository: CharactersListRepository
+    private val repository: CharacterRepository
 ) : ViewModel() {
     private val _characterDetails = MutableStateFlow<Resource<CharacterDetails>>(Resource.Loading)
     val characterDetails: StateFlow<Resource<CharacterDetails>> get() = _characterDetails

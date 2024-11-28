@@ -6,13 +6,13 @@ import com.example.attackontitan.data.service.OrganizationApiService
 import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
-interface OrganizationsListRepository {
+interface OrganizationRepository {
     suspend fun getOrganizationsList(): Resource<List<BaseDataModel>>
 }
 
-class OrganizationsListRepositoryImpl @Inject constructor(
+class OrganizationRepositoryImpl @Inject constructor(
     private val api: OrganizationApiService
-) : OrganizationsListRepository {
+) : OrganizationRepository {
 
     override suspend fun getOrganizationsList(): Resource<List<BaseDataModel>> =
         DefaultListRepositoryImpl { api.getOrganizationsList() }.getList()

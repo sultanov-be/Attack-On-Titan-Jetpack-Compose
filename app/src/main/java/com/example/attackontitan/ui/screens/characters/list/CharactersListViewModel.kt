@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.attackontitan.data.model.BaseDataModel
-import com.example.attackontitan.data.repository.characters.CharactersListRepository
+import com.example.attackontitan.data.repository.characters.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersListViewModel @Inject constructor(
-    val repository: CharactersListRepository
+    val repository: CharacterRepository
 ) : ViewModel() {
 
     private val _query = MutableStateFlow<String?>(null)

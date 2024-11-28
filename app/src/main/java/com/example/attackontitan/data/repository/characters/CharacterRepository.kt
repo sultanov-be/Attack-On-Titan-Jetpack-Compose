@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-interface CharactersListRepository {
+interface CharacterRepository {
     fun getCharacters(query: String? = null): Flow<PagingData<BaseDataModel>>
     suspend fun getCharacterDetails(id: Int): Flow<Resource<CharacterDetails>>
 }
 
-class CharactersListRepositoryImpl @Inject constructor(
+class CharacterRepositoryImpl @Inject constructor(
     private val apiService: CharacterApiService
-) : CharactersListRepository {
+) : CharacterRepository {
     override fun getCharacters(query: String?): Flow<PagingData<BaseDataModel>> {
         return Pager(
             config = PagingConfig(

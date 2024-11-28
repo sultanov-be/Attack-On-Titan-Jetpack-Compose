@@ -8,13 +8,13 @@ import com.example.attackontitan.data.service.LocationApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-interface LocationsListRepository {
+interface LocationRepository {
     fun getLocations(): Flow<PagingData<LocationDetails>>
 }
 
-class LocationsListRepositoryImpl @Inject constructor(
+class LocationRepositoryImpl @Inject constructor(
     private val apiService: LocationApiService
-) : LocationsListRepository {
+) : LocationRepository {
     override fun getLocations(): Flow<PagingData<LocationDetails>> {
         return Pager(
             config = PagingConfig(

@@ -1,13 +1,13 @@
 package com.example.attackontitan.di
 
-import com.example.attackontitan.data.repository.organizations.OrganizationsListRepository
-import com.example.attackontitan.data.repository.organizations.OrganizationsListRepositoryImpl
-import com.example.attackontitan.data.repository.titans.TitansListRepository
-import com.example.attackontitan.data.repository.titans.TitansListRepositoryImpl
-import com.example.attackontitan.data.repository.characters.CharactersListRepository
-import com.example.attackontitan.data.repository.characters.CharactersListRepositoryImpl
-import com.example.attackontitan.data.repository.locations.LocationsListRepository
-import com.example.attackontitan.data.repository.locations.LocationsListRepositoryImpl
+import com.example.attackontitan.data.repository.characters.CharacterRepository
+import com.example.attackontitan.data.repository.characters.CharacterRepositoryImpl
+import com.example.attackontitan.data.repository.organizations.OrganizationRepository
+import com.example.attackontitan.data.repository.organizations.OrganizationRepositoryImpl
+import com.example.attackontitan.data.repository.titans.TitanRepositoryImpl
+import com.example.attackontitan.data.repository.locations.LocationRepository
+import com.example.attackontitan.data.repository.locations.LocationRepositoryImpl
+import com.example.attackontitan.data.repository.titans.TitanRepository
 import com.example.attackontitan.data.service.CharacterApiService
 import com.example.attackontitan.data.service.LocationApiService
 import com.example.attackontitan.data.service.OrganizationApiService
@@ -58,21 +58,21 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideTitansListRepository(api: TitanApiService): TitansListRepository =
-        TitansListRepositoryImpl(api)
+    fun provideTitansListRepository(api: TitanApiService): TitanRepository =
+        TitanRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideOrganizationsListRepository(api: OrganizationApiService): OrganizationsListRepository =
-        OrganizationsListRepositoryImpl(api)
+    fun provideOrganizationsListRepository(api: OrganizationApiService): OrganizationRepository =
+        OrganizationRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideCharactersListRepository(api: CharacterApiService) : CharactersListRepository =
-        CharactersListRepositoryImpl(api)
+    fun provideCharactersListRepository(api: CharacterApiService) : CharacterRepository =
+        CharacterRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideLocationsListRepository(api: LocationApiService) : LocationsListRepository =
-        LocationsListRepositoryImpl(api)
+    fun provideLocationsListRepository(api: LocationApiService) : LocationRepository =
+        LocationRepositoryImpl(api)
 }

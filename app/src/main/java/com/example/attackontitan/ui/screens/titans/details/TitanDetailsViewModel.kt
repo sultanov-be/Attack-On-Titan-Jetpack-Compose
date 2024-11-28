@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.model.titans.TitanDetails
-import com.example.attackontitan.data.repository.titans.TitansListRepository
+import com.example.attackontitan.data.repository.titans.TitanRepository
 import com.example.attackontitan.utils.Resource
 import com.example.attackontitan.utils.extractIdFromUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TitanDetailsViewModel @Inject constructor(
-    private val repository: TitansListRepository
+    private val repository: TitanRepository
 ) : ViewModel() {
 
     private val _titanDetails = MutableLiveData<Resource<TitanDetails>>()
