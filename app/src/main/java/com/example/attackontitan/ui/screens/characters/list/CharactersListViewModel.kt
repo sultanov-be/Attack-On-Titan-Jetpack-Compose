@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.repository.characters.CharactersListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,7 +26,7 @@ class CharactersListViewModel @Inject constructor(
     val query: StateFlow<String?> = _query
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    val charactersPagingData: Flow<PagingData<CharacterBaseInfo>> =
+    val charactersPagingData: Flow<PagingData<BaseDataModel>> =
         _query
             .debounce(300)
             .distinctUntilChanged()

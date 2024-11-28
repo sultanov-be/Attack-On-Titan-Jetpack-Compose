@@ -1,7 +1,6 @@
 package com.example.attackontitan.data.repository.titans
 
-import com.example.attackontitan.data.model.characters.CharacterBaseInfo
-import com.example.attackontitan.data.model.titans.TitanBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.model.titans.TitanDetails
 import com.example.attackontitan.data.repository.DefaultListRepository
 import com.example.attackontitan.data.service.TitanApiService
@@ -9,15 +8,15 @@ import com.example.attackontitan.utils.Resource
 import javax.inject.Inject
 
 interface TitansListRepository {
-    suspend fun getTitansList(): Resource<List<TitanBaseInfo>>
+    suspend fun getTitansList(): Resource<List<BaseDataModel>>
     suspend fun getTitanDetails(id: Int): Resource<TitanDetails>
-    suspend fun getCharacterName(id: Int): Resource<CharacterBaseInfo>
+    suspend fun getCharacterName(id: Int): Resource<BaseDataModel>
 }
 
 class TitansListRepositoryImpl @Inject constructor(
     private val api: TitanApiService
 ) : TitansListRepository {
-    override suspend fun getTitansList(): Resource<List<TitanBaseInfo>> {
+    override suspend fun getTitansList(): Resource<List<BaseDataModel>> {
         return DefaultListRepository { api.getTitansList() }.getList()
     }
 
@@ -40,7 +39,7 @@ class TitansListRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getCharacterName(id: Int): Resource<CharacterBaseInfo> {
+    override suspend fun getCharacterName(id: Int): Resource<BaseDataModel> {
         return try {
             val response = api.getCharacterName(id)
             if (response.isSuccessful) {

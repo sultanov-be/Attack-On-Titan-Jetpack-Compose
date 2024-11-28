@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.attackontitan.data.model.organizations.OrganizationBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.repository.organizations.OrganizationsListRepository
 import com.example.attackontitan.utils.BaseListViewModel
 import com.example.attackontitan.utils.Resource
@@ -15,10 +15,10 @@ import javax.inject.Inject
 @HiltViewModel
 class OrganizationsListViewModel @Inject constructor(
     private val repository: OrganizationsListRepository
-) : BaseListViewModel<OrganizationBaseInfo>() {
+) : BaseListViewModel<BaseDataModel>() {
 
-    private val _organizationsList = MutableLiveData<Resource<List<OrganizationBaseInfo>>>()
-    override val list: LiveData<Resource<List<OrganizationBaseInfo>>> = _organizationsList
+    private val _organizationsList = MutableLiveData<Resource<List<BaseDataModel>>>()
+    override val list: LiveData<Resource<List<BaseDataModel>>> = _organizationsList
 
     init {
         getOrganizationsBaseInfo()

@@ -3,7 +3,7 @@ package com.example.attackontitan.data.repository.characters
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.model.characters.CharacterDetails
 import com.example.attackontitan.data.service.CharacterApiService
 import com.example.attackontitan.utils.Resource
@@ -12,14 +12,14 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface CharactersListRepository {
-    fun getCharacters(query: String? = null): Flow<PagingData<CharacterBaseInfo>>
+    fun getCharacters(query: String? = null): Flow<PagingData<BaseDataModel>>
     suspend fun getCharacterDetails(id: Int): Flow<Resource<CharacterDetails>>
 }
 
 class CharactersListRepositoryImpl @Inject constructor(
     private val apiService: CharacterApiService
 ) : CharactersListRepository {
-    override fun getCharacters(query: String?): Flow<PagingData<CharacterBaseInfo>> {
+    override fun getCharacters(query: String?): Flow<PagingData<BaseDataModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,

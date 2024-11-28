@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.data.model.titans.TitanDetails
 import com.example.attackontitan.data.repository.titans.TitansListRepository
 import com.example.attackontitan.utils.Resource
@@ -21,11 +21,11 @@ class TitanDetailsViewModel @Inject constructor(
     private val _titanDetails = MutableLiveData<Resource<TitanDetails>>()
     val titanDetails: LiveData<Resource<TitanDetails>> = _titanDetails
 
-    private val _characterDetails = MutableLiveData<Resource<CharacterBaseInfo>>()
-    val characterDetails: LiveData<Resource<CharacterBaseInfo>> = _characterDetails
+    private val _characterDetails = MutableLiveData<Resource<BaseDataModel>>()
+    val characterDetails: LiveData<Resource<BaseDataModel>> = _characterDetails
 
-    private val _formerInheritorNames = MutableLiveData<Resource<List<CharacterBaseInfo>>>()
-    val formerInheritorNames: LiveData<Resource<List<CharacterBaseInfo>>> = _formerInheritorNames
+    private val _formerInheritorNames = MutableLiveData<Resource<List<BaseDataModel>>>()
+    val formerInheritorNames: LiveData<Resource<List<BaseDataModel>>> = _formerInheritorNames
 
     fun getTitanDetails(id: Int) {
         viewModelScope.launch {
@@ -47,7 +47,7 @@ class TitanDetailsViewModel @Inject constructor(
     fun getFormerInheritorNames(urls: List<String>) {
         viewModelScope.launch {
             _formerInheritorNames.value = Resource.Loading
-            val names = mutableListOf<CharacterBaseInfo>()
+            val names = mutableListOf<BaseDataModel>()
             val errors = mutableListOf<String>()
 
             for (url in urls) {

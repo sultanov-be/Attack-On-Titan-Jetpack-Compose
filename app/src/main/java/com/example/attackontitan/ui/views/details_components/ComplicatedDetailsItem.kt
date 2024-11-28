@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.attackontitan.R
-import com.example.attackontitan.data.model.characters.CharacterBaseInfo
+import com.example.attackontitan.data.model.BaseDataModel
 import com.example.attackontitan.ui.navigation.Route
 import com.example.attackontitan.utils.firstToCapital
 
@@ -73,7 +73,7 @@ fun ComplicatedDetailsItem(title: String, list: List<String>) {
 }
 
 @Composable
-fun ComplicatedDetailsItem(title: String, list: List<CharacterBaseInfo>, navController: NavController) {
+fun ComplicatedDetailsItem(title: String, list: List<BaseDataModel>, navController: NavController) {
     OutlinedCard(
         modifier = Modifier.padding(4.dp),
         shape = RoundedCornerShape(4.dp),

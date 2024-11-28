@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.attackontitan.R
-import com.example.attackontitan.data.model.locations.LocationBaseInfo
+import com.example.attackontitan.data.model.locations.LocationDetails
 import com.example.attackontitan.ui.views.details_components.SimpleDetailsItem
 
 @Composable
@@ -84,7 +84,7 @@ fun ListItem(
 
 @Composable
 fun ListItemExtra(
-    content: LocationBaseInfo
+    content: LocationDetails
 ) {
 
     Card(
