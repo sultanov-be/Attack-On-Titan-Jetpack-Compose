@@ -12,20 +12,20 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface CharactersListRepository {
-    fun getCharacters(): Flow<PagingData<CharacterBaseInfo>>
+    fun getCharacters(query: String? = null): Flow<PagingData<CharacterBaseInfo>>
     suspend fun getCharacterDetails(id: Int): Flow<Resource<CharacterDetails>>
 }
 
 class CharactersListRepositoryImpl @Inject constructor(
     private val apiService: CharacterApiService
 ) : CharactersListRepository {
-    override fun getCharacters(): Flow<PagingData<CharacterBaseInfo>> {
+    override fun getCharacters(query: String?): Flow<PagingData<CharacterBaseInfo>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { CharactersPagingSource(apiService) }
+            pagingSourceFactory = { CharactersPagingSource(apiService, query) }
         ).flow
     }
 
